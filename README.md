@@ -1,8 +1,8 @@
 # 🔐 PassGuard — Password Security & Risk Analyzer
 
-PassGuard is a modern web-based password security analyzer designed to help users understand the strength and security of their passwords.
+PassGuard is a modern web-based cybersecurity application designed to help users understand the strength and security of their passwords.
 
-The application evaluates password complexity, calculates estimated entropy, provides a basic crack-time estimate, and generates strong random passwords.
+It analyzes password complexity, entropy, predictable patterns, attack risks, and compromised-password exposure. It also provides personalized security recommendations and a secure password generator.
 
 ---
 
@@ -10,7 +10,7 @@ The application evaluates password complexity, calculates estimated entropy, pro
 
 ### 🔍 Password Strength Analysis
 
-PassGuard analyzes a password based on multiple security criteria:
+PassGuard evaluates passwords using multiple security criteria:
 
 - Password length
 - Uppercase letters
@@ -19,6 +19,7 @@ PassGuard analyzes a password based on multiple security criteria:
 - Special characters
 - Repeated patterns
 - Common password patterns
+- Predictable sequences
 
 The application provides a security score from **0 to 100**.
 
@@ -28,7 +29,7 @@ The application provides a security score from **0 to 100**.
 
 The analyzer calculates estimated password entropy in bits.
 
-Entropy provides an indication of how difficult a password may be to guess based on its character space and length.
+Entropy provides an indication of how difficult a password may be to guess based on its length and character space.
 
 Example:
 
