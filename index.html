@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PassGuard | Security Lab</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>PassGuard</span>
+    </div>
+
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Security Lab
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Analyze your password.
+            <span>Protect your account.</span>
+        </h1>
+
+        <p>
+            PassGuard analyzes password strength, attack resistance,
+            security risks and potential data breaches.
+        </p>
+
+    </section>
+
+
+    <!-- PASSWORD ANALYZER -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <div>
+
+                <span class="section-tag">
+                    PASSWORD ANALYZER
+                </span>
+
+                <h2>
+                    Security Analysis
+                </h2>
+
+                <p>
+                    Enter a password to analyze its security.
+                </p>
+
+            </div>
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+
+        <!-- PASSWORD INPUT -->
+
+        <div class="password-box">
+
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="Enter your password..."
+                autocomplete="off"
+            >
+
+            <button id="togglePassword">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- SCORE -->
+
+        <div class="score-container">
+
+            <span>
+                Security Score
+            </span>
+
+            <strong>
+                <span id="score">0</span>/100
+            </strong>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-bar">
+
+            <div id="progress"></div>
+
+        </div>
+
+
+        <!-- STRENGTH -->
+
+        <div class="strength">
+
+            Strength:
+            <span id="strength">
+                VERY WEAK
+            </span>
+
+        </div>
+
+
+        <!-- CHECKS -->
+
+        <div class="checks">
+
+            <div class="check" id="lengthCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    At least 12 characters
+                </span>
+
+            </div>
+
+
+            <div class="check" id="uppercaseCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    Uppercase letter
+                </span>
+
+            </div>
+
+
+            <div class="check" id="lowercaseCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    Lowercase letter
+                </span>
+
+            </div>
+
+
+            <div class="check" id="numberCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    Number
+                </span>
+
+            </div>
+
+
+            <div class="check" id="specialCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    Special character
+                </span>
+
+            </div>
+
+
+            <div class="check" id="patternCheck">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+                <span>
+                    No repeated patterns
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ENTROPY / CRACK TIME -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <h3>
+                Password Entropy
+            </h3>
+
+            <strong>
+                <span id="entropy">0</span> bits
+            </strong>
+
+            <p>
+                Estimated password randomness
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Estimated Crack Time
+            </h3>
+
+            <strong id="crackTime">
+                Instant
+            </strong>
+
+            <p>
+                Approximate offline attack resistance
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SECURITY DASHBOARD -->
+
+    <section class="security-dashboard">
+
+        <div class="security-dashboard-header">
+
+            <div>
+
+                <span class="section-tag">
+                    SECURITY OVERVIEW
+                </span>
+
+                <h2>
+                    Security Dashboard
+                </h2>
+
+                <p>
+                    A real-time summary of your password's overall
+                    security posture.
+                </p>
+
+            </div>
+
+
+            <div class="overall-security">
+
+                <span>
+                    SECURITY SCORE
+                </span>
+
+                <strong id="dashboardScore">
+                    0
+                </strong>
+
+                <small>
+                    /100
+                </small>
+
+                <em id="dashboardRating">
+                    UNKNOWN
+                </em>
+
+            </div>
+
+        </div>
+
+
+        <div class="security-metrics">
+
+
+            <div class="security-metric">
+
+                <div class="metric-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Password Quality
+                    </span>
+
+                    <strong id="passwordQuality">
+                        UNKNOWN
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-metric">
+
+                <div class="metric-icon">
+
+                    <i class="fa-solid fa-crosshairs"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Attack Resistance
+                    </span>
+
+                    <strong id="attackResistance">
+                        UNKNOWN
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-metric">
+
+                <div class="metric-icon">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Overall Risk
+                    </span>
+
+                    <strong id="dashboardRisk">
+                        UNKNOWN
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECOMMENDATIONS -->
+
+        <div class="recommendation-panel">
+
+            <div class="recommendation-title">
+
+                <div>
+
+                    <span class="section-tag">
+                        SMART GUIDANCE
+                    </span>
+
+                    <h3>
+                        Security Recommendations
+                    </h3>
+
+                </div>
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+            </div>
+
+
+            <div
+                id="recommendations"
+                class="recommendations"
+            >
+
+                <div class="recommendation-item">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>
+                        Enter a password to receive personalized
+                        security recommendations.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- RISK ANALYSIS -->
+
+    <section class="risk-dashboard">
+
+        <div class="risk-header">
+
+            <div>
+
+                <span class="section-tag">
+                    SECURITY INTELLIGENCE
+                </span>
+
+                <h2>
+                    Risk Analysis
+                </h2>
+
+                <p>
+                    A detailed assessment of potential password
+                    security risks.
+                </p>
+
+            </div>
+
+
+            <div class="risk-score">
+
+                <span>
+                    RISK LEVEL
+                </span>
+
+                <strong id="riskLevel">
+                    UNKNOWN
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="risk-grid">
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Brute Force
+                    </h3>
+
+                    <p>
+                        Resistance against repeated password guessing.
+                    </p>
+
+                    <strong id="bruteRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Dictionary Attack
+                    </h3>
+
+                    <p>
+                        Detects predictable words and common passwords.
+                    </p>
+
+                    <strong id="dictionaryRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-code-branch"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Pattern Risk
+                    </h3>
+
+                    <p>
+                        Detects repeated or predictable character patterns.
+                    </p>
+
+                    <strong id="patternRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-ruler-horizontal"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Length Risk
+                    </h3>
+
+                    <p>
+                        Evaluates whether the password is long enough.
+                    </p>
+
+                    <strong id="lengthRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ATTACK ANALYSIS -->
+
+    <section class="risk-dashboard attack-section">
+
+        <div class="risk-header">
+
+            <div>
+
+                <span class="section-tag">
+                    ATTACK INTELLIGENCE
+                </span>
+
+                <h2>
+                    Attack Analysis
+                </h2>
+
+                <p>
+                    Identify common attack patterns that could expose
+                    your password.
+                </p>
+
+            </div>
+
+
+            <div class="risk-score">
+
+                <span>
+                    THREAT STATUS
+                </span>
+
+                <strong id="threatStatus">
+                    SCANNING
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="risk-grid">
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-key"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Common Password
+                    </h3>
+
+                    <p>
+                        Checks for frequently used passwords.
+                    </p>
+
+                    <strong id="commonPasswordRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Sequential Pattern
+                    </h3>
+
+                    <p>
+                        Detects patterns such as 1234 or abcd.
+                    </p>
+
+                    <strong id="sequenceRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-repeat"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Repeated Characters
+                    </h3>
+
+                    <p>
+                        Detects repeated characters and patterns.
+                    </p>
+
+                    <strong id="repeatRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-card">
+
+                <div class="risk-icon">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Predictability
+                    </h3>
+
+                    <p>
+                        Measures how predictable the password structure is.
+                    </p>
+
+                    <strong id="predictabilityRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BREACH DETECTION -->
+
+    <section class="card breach-section">
+
+        <div class="card-title">
+
+            <div>
+
+                <span class="section-tag">
+                    BREACH INTELLIGENCE
+                </span>
+
+                <h2>
+                    Password Breach Detection
+                </h2>
+
+                <p>
+                    Check whether your password has appeared in known
+                    data breaches.
+                </p>
+
+            </div>
+
+            <i class="fa-solid fa-database"></i>
+
+        </div>
+
+
+        <div
+            id="breachResult"
+            class="breach-result"
+        >
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                Click the button to check breach exposure.
+            </span>
+
+        </div>
+
+
+        <button
+            id="checkBreachBtn"
+            class="breach-btn"
+        >
+
+            <i class="fa-solid fa-radar"></i>
+
+            Check Password Breach
+
+        </button>
+
+    </section>
+
+
+
+    <!-- PASSWORD GENERATOR -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <div>
+
+                <span class="section-tag">
+                    SECURE GENERATOR
+                </span>
+
+                <h2>
+                    Password Generator
+                </h2>
+
+                <p>
+                    Generate a strong random password.
+                </p>
+
+            </div>
+
+            <i class="fa-solid fa-key"></i>
+
+        </div>
+
+
+        <div class="generator-box">
+
+
+            <div class="generated-password">
+
+                <input
+                    type="text"
+                    id="generatedPassword"
+                    readonly
+                    placeholder="Generated password"
+                >
+
+                <button id="copyBtn">
+
+                    <i class="fa-solid fa-copy"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="generator-controls">
+
+                <label for="passwordLength">
+                    Length
+                </label>
+
+                <input
+                    type="range"
+                    id="passwordLength"
+                    min="8"
+                    max="32"
+                    value="16"
+                >
+
+                <span id="lengthValue">
+                    16
+                </span>
+
+                <button id="generateBtn">
+                    Generate Password
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SECURITY TIPS -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <div>
+
+                <span class="section-tag">
+                    SECURITY KNOWLEDGE
+                </span>
+
+                <h2>
+                    Security Tips
+                </h2>
+
+                <p>
+                    Personalized recommendations based on your password.
+                </p>
+
+            </div>
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+        </div>
+
+
+        <div class="tips-grid">
+
+
+            <div class="tip-card" id="tipLength">
+
+                <i class="fa-solid fa-ruler-horizontal"></i>
+
+                <h3>
+                    Use Long Passwords
+                </h3>
+
+                <p>
+                    Use at least 12–16 characters for better protection
+                    against brute-force attacks.
+                </p>
+
+            </div>
+
+
+            <div class="tip-card" id="tipCharacter">
+
+                <i class="fa-solid fa-fingerprint"></i>
+
+                <h3>
+                    Use More Character Types
+                </h3>
+
+                <p>
+                    Combine uppercase, lowercase, numbers and special
+                    characters.
+                </p>
+
+            </div>
+
+
+            <div class="tip-card" id="tipPattern">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h3>
+                    Avoid Predictable Patterns
+                </h3>
+
+                <p>
+                    Avoid repeated characters, sequences and commonly
+                    used passwords.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        PassGuard © 2026 | Password Security & Risk Analyzer
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
